@@ -1,44 +1,39 @@
 package kg.geektech.game.players;
 
 public class GameEntity {
-    private int health;
-    private int damage;
-    private String name;
+        private int health;
+        private int damage;
+        private String name;
 
-    public GameEntity(String name, int health, int damage) {
-        this.name = name;
-        this.health = health;
-        this.damage = damage;
-    }
-
-    public int getHealth() {
-        return health;
-    }
-
-    public int setHealth(int health) {
-        if (health < 0) {
-            this.health = 0;
-        } else {
+        public GameEntity(int health, int damage, String name) {
             this.health = health;
+            this.damage = damage;
+            this.name = name;
         }
-        return health;
-    }
 
-    public int getDamage() {
-        return damage;
-    }
+        public int getHealth() {
+            return health;
+        }
 
-    public int setDamage(int damage) {
-        this.damage = damage;
-        return damage;
-    }
+        public void setHealth(int health) {
+            if (health < 0) {
+                this.health = 0;
+            } else {
+                this.health = health;
+            }
+        }
 
-    public String getName() {
-        return name;
-    }
+        public int getDamage() {
+            return damage;
+        }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-}
+        public void setDamage(int damage) {
+            this.damage = damage;
+        }
 
+        @Override
+        public String toString() {
+            return this.name + " health: " + this.health
+                    + " damage: " + this.damage;
+        }
+    }

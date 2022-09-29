@@ -3,20 +3,17 @@ package kg.geektech.game.players;
 import kg.geektech.game.general.RPG_Game;
 
 public class Magic extends Hero{
-    public Magic(String name, int health, int damage) {
-        super(name, health, damage, SuperAbility.BOOST);
+    public Magic(int health, int damage, String name) {
+        super(health, damage, name, SuperAbility.BOOST);
     }
 
     @Override
     public void applySuperPower(Hero[] heroes, Boss boss) {
-        if (this.getHealth() > 0 && boss.getHealth() > 0) {
-            int boost = RPG_Game.random.nextInt(5) + 2;
-            int heroIndex = RPG_Game.random.nextInt(heroes.length);
-            if (heroes[heroIndex].getHealth() > 0) {
-                heroes[heroIndex].setDamage(heroes[heroIndex].getDamage() + boost);
-                System.out.println("Magic boosted " + heroes[heroIndex].getName());
+        int boost = RPG_Game.random.nextInt(6) + 5; //5,6,7,8,9,10
+        for (int i = 0; i < heroes.length; i++) {
+            if (heroes[i].getDamage() > 0) {
+                heroes[i].setDamage(heroes[i].getDamage() + boost);
             }
         }
     }
 }
-

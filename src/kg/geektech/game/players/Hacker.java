@@ -3,17 +3,23 @@ package kg.geektech.game.players;
 import kg.geektech.game.general.RPG_Game;
 
 public class Hacker extends Hero {
-    public Hacker(String name, int health, int damage) {
-        super(name, health, damage, SuperAbility.HACK);
+    private int theftHealth;
+    private boolean theft= false;
+
+    public Hacker(int health, int damage, String name) {
+        super(health, damage, name, SuperAbility.THEFT);
     }
 
     @Override
     public void applySuperPower(Hero[] heroes, Boss boss) {
-        int damage = boss.getHealth() - RPG_Game.random.nextInt(200);
+        this.theftHealth=16;
         for (int i = 0; i < heroes.length; i++) {
-            i = RPG_Game.random.nextInt(heroes.length);
-            heroes[i].setHealth(heroes[i].getHealth() + damage);
-            System.out.println("Haсker take health boss");
+            if (theft) {
+                boss.setHealth(boss.getHealth() - this.theftHealth);
+                heroes[i].setHealth(getHealth() + this.theftHealth);
+                System.out.println("Thief stole hp from Boss: " + this.theftHealth);
+                theft = false;
+            }else theft = true;
             break;
         }
     }

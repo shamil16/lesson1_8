@@ -1,18 +1,26 @@
 package kg.geektech.game.players;
 
-public abstract class Hero extends GameEntity implements HavingSuperAbility{
-    private SuperAbility power;
+public class Hero extends GameEntity implements HavingSuperAbility{
+    private SuperAbility abilityType;
 
-    public Hero(String name, int health, int damage, SuperAbility power) {
-        super(name, health, damage);
-        this.power = power;
+    public Hero(int health, int damage, String name, SuperAbility abilityType) {
+        super(health, damage, name);
+        this.abilityType = abilityType;
     }
 
-    public void hit(Boss boss) {
+    public SuperAbility getAbilityType() {
+        return abilityType;
+    }
+
+    public void attack(Boss boss) {
         if (this.getHealth() > 0 && boss.getHealth() > 0) {
             boss.setHealth(boss.getHealth() - this.getDamage());
         }
     }
 
-    public abstract void applySuperPower(Hero[] heroes, Boss boss);
+    @Override
+    public void applySuperPower(Hero[] heroes, Boss boss) {
+
+    }
 }
+
